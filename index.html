@@ -388,6 +388,196 @@
       margin-top: 4px;
     }
 
+    /* ===== HORARIOS ===== */
+    .dias-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .dia-tab {
+      padding: 9px 18px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      color: var(--text-soft);
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.15s;
+    }
+
+    .dia-tab.active {
+      background: var(--rosa);
+      color: white;
+      border-color: var(--rosa);
+    }
+
+    .horario-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      margin-bottom: 10px;
+    }
+
+    .horario-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .horario-hora {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--rosa-dark);
+      font-weight: 600;
+      min-width: 70px;
+    }
+
+    .horario-profe-select {
+      flex: 1;
+      min-width: 140px;
+      padding: 9px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      background: var(--rosa-bg);
+      color: var(--text);
+    }
+
+    .horario-cupo {
+      font-size: 13px;
+      color: var(--text-soft);
+      white-space: nowrap;
+    }
+
+    .horario-cupo.lleno { color: var(--danger); font-weight: 600; }
+
+    .btn-ver-alumnas {
+      background: var(--celeste);
+      color: #1a4a5a;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      white-space: nowrap;
+    }
+
+    .horario-alumnas-list {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      display: none;
+    }
+
+    .horario-alumnas-list.show { display: block; }
+
+    .alumna-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: var(--rosa-bg);
+      border-radius: 8px;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .alumna-item .dni-small {
+      color: var(--text-soft);
+      font-size: 12px;
+    }
+
+    .btn-remove-alumna {
+      background: none;
+      border: none;
+      color: var(--danger);
+      font-size: 16px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 2px 6px;
+    }
+
+    .add-alumna-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .add-alumna-form input {
+      flex: 1;
+      min-width: 100px;
+      padding: 9px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      background: var(--rosa-bg);
+    }
+
+    .btn-add-alumna {
+      background: var(--rosa);
+      color: white;
+      border: none;
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .mis-clases-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .mis-clases-dia {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: var(--rosa-dark);
+      min-width: 90px;
+    }
+
+    .mis-clases-hora {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .mis-clases-profe {
+      font-size: 13px;
+      color: var(--text-soft);
+      margin-left: auto;
+    }
+
+    .empty-state {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 40px;
+      text-align: center;
+      border: 1.5px dashed var(--border);
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
     @media (max-width: 600px) {
       .welcome-logo h1 { font-size: 34px; }
       .login-card { padding: 32px 24px; }
@@ -498,7 +688,9 @@
     </div>
     <div id="alumna-tab-mis-clases" class="tab-panel">
       <h2 class="panel-title">Mis clases</h2>
-      <div class="coming-soon"><p>Módulo en construcción 🔧</p></div>
+      <div id="mis-clases-container">
+        <div class="empty-state">Cargando...</div>
+      </div>
     </div>
     <div id="alumna-tab-mis-pagos" class="tab-panel">
       <h2 class="panel-title">Mis pagos</h2>
@@ -557,7 +749,10 @@
     </div>
     <div id="staff-tab-horarios" class="tab-panel">
       <h2 class="panel-title">Horarios</h2>
-      <div class="coming-soon"><p>Módulo en construcción 🔧</p></div>
+      <div class="dias-tabs" id="dias-tabs"></div>
+      <div id="horarios-container">
+        <div class="empty-state">Cargando...</div>
+      </div>
     </div>
     <div id="staff-tab-ausencias" class="tab-panel">
       <h2 class="panel-title">Ausencias y Recuperos</h2>
@@ -579,7 +774,7 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getDatabase, ref, get, set, push }
+  import { getDatabase, ref, get, set, push, onValue, update, remove, child }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
   const firebaseConfig = {
@@ -602,6 +797,10 @@
   window._get = get;
   window._set = set;
   window._push = push;
+  window._onValue = onValue;
+  window._update = update;
+  window._remove = remove;
+  window._child = child;
   window._signInWithEmailAndPassword = signInWithEmailAndPassword;
   window._signOut = signOut;
 
@@ -611,6 +810,7 @@
       hideAll();
       document.getElementById('app-staff-screen').style.display = 'block';
       document.getElementById('staff-name-header').textContent = user.email;
+      if (window.initStaffData) window.initStaffData();
     }
   });
 </script>
@@ -647,6 +847,7 @@
           hideAll();
           document.getElementById('app-alumna-screen').style.display = 'block';
           document.getElementById('alumna-name-header').textContent = alumna.nombre;
+          initAlumnaData(dni);
           return;
         }
       }
@@ -711,6 +912,185 @@
     document.querySelectorAll('#app-alumna-screen .nav-tab').forEach(t => t.classList.remove('active'));
     document.getElementById('alumna-tab-' + name).classList.add('active');
     if (event && event.target) event.target.classList.add('active');
+  }
+
+  // ===== CONFIG HORARIOS =====
+  const DIAS = ['lunes','martes','miercoles','jueves','viernes'];
+  const DIAS_LABEL = { lunes:'Lunes', martes:'Martes', miercoles:'Miércoles', jueves:'Jueves', viernes:'Viernes' };
+  const HORAS = ['08:00','09:00','10:00','11:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
+  const PROFES_DEFAULT = ['Anabella','Maia','Rocío','Iara','Antonela'];
+
+  let selectedDia = 'lunes';
+  let horariosData = {};
+  let profesData = {};
+  let staffDataInitialized = false;
+
+  async function seedProfes() {
+    const snap = await window._get(window._ref(window._db, 'profes'));
+    if (!snap.exists()) {
+      for (const nombre of PROFES_DEFAULT) {
+        await window._push(window._ref(window._db, 'profes'), { nombre });
+      }
+    }
+  }
+
+  async function initStaffData() {
+    if (staffDataInitialized) return;
+    staffDataInitialized = true;
+    await seedProfes();
+    renderDiasTabs();
+    window._onValue(window._ref(window._db, 'profes'), (snap) => {
+      profesData = snap.val() || {};
+      renderHorarios();
+    });
+    window._onValue(window._ref(window._db, 'horarios'), (snap) => {
+      horariosData = snap.val() || {};
+      renderHorarios();
+    });
+  }
+  window.initStaffData = initStaffData;
+
+  function renderDiasTabs() {
+    const container = document.getElementById('dias-tabs');
+    if (!container) return;
+    container.innerHTML = DIAS.map(d =>
+      `<button class="dia-tab ${d === selectedDia ? 'active' : ''}" onclick="selectDia('${d}')">${DIAS_LABEL[d]}</button>`
+    ).join('');
+  }
+
+  function selectDia(dia) {
+    selectedDia = dia;
+    renderDiasTabs();
+    renderHorarios();
+  }
+  window.selectDia = selectDia;
+
+  function renderHorarios() {
+    const container = document.getElementById('horarios-container');
+    if (!container) return;
+
+    const profeOptions = (selectedProfeId) => {
+      let opts = `<option value="">Sin asignar</option>`;
+      Object.entries(profesData).forEach(([id, p]) => {
+        opts += `<option value="${id}" ${id === selectedProfeId ? 'selected' : ''}>${p.nombre}</option>`;
+      });
+      return opts;
+    };
+
+    container.innerHTML = HORAS.map(hora => {
+      const slot = (horariosData[selectedDia] && horariosData[selectedDia][hora]) || {};
+      const alumnas = slot.alumnas || {};
+      const entries = Object.entries(alumnas);
+      const count = entries.length;
+      const lleno = count >= 10;
+
+      const alumnasHtml = entries.length
+        ? entries.map(([key, a]) => `
+            <div class="alumna-item">
+              <span>${a.nombre} <span class="dni-small">DNI ${a.dni}</span></span>
+              <button class="btn-remove-alumna" onclick="removeAlumnaFromHorario('${selectedDia}','${hora}','${key}')">✕</button>
+            </div>
+          `).join('')
+        : `<p style="color:var(--text-soft);font-size:13px;margin-bottom:6px;">Sin alumnas asignadas todavía.</p>`;
+
+      return `
+        <div class="horario-card">
+          <div class="horario-card-top">
+            <div class="horario-hora">${hora}</div>
+            <select class="horario-profe-select" onchange="cambiarProfe('${selectedDia}','${hora}', this.value)">
+              ${profeOptions(slot.profeId || '')}
+            </select>
+            <span class="horario-cupo ${lleno ? 'lleno' : ''}">${count}/10 alumnas</span>
+            <button class="btn-ver-alumnas" onclick="toggleAlumnasList('${selectedDia}','${hora}')">Ver alumnas</button>
+          </div>
+          <div class="horario-alumnas-list" id="lista-${selectedDia}-${hora}">
+            ${alumnasHtml}
+            <div class="add-alumna-form">
+              <input type="text" placeholder="Nombre" id="nombre-${selectedDia}-${hora}" />
+              <input type="number" placeholder="DNI" id="dni-${selectedDia}-${hora}" />
+              <button class="btn-add-alumna" onclick="addAlumnaToHorario('${selectedDia}','${hora}')">Agregar</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function toggleAlumnasList(dia, hora) {
+    const el = document.getElementById(`lista-${dia}-${hora}`);
+    if (el) el.classList.toggle('show');
+  }
+  window.toggleAlumnasList = toggleAlumnasList;
+
+  async function cambiarProfe(dia, hora, profeId) {
+    await window._update(window._ref(window._db, `horarios/${dia}/${hora}`), { profeId });
+  }
+  window.cambiarProfe = cambiarProfe;
+
+  async function addAlumnaToHorario(dia, hora) {
+    const nombreInput = document.getElementById(`nombre-${dia}-${hora}`);
+    const dniInput = document.getElementById(`dni-${dia}-${hora}`);
+    const nombre = nombreInput.value.trim();
+    const dni = dniInput.value.trim();
+    if (!nombre || !dni) { alert('Completá nombre y DNI.'); return; }
+
+    const slot = (horariosData[dia] && horariosData[dia][hora]) || {};
+    const alumnas = slot.alumnas || {};
+    if (Object.keys(alumnas).length >= 10) { alert('Este horario ya está lleno (10/10).'); return; }
+
+    const newRef = window._push(window._ref(window._db, `horarios/${dia}/${hora}/alumnas`));
+    await window._set(newRef, { nombre, dni });
+    nombreInput.value = '';
+    dniInput.value = '';
+  }
+  window.addAlumnaToHorario = addAlumnaToHorario;
+
+  async function removeAlumnaFromHorario(dia, hora, key) {
+    await window._remove(window._ref(window._db, `horarios/${dia}/${hora}/alumnas/${key}`));
+  }
+  window.removeAlumnaFromHorario = removeAlumnaFromHorario;
+
+  // ===== MIS CLASES (alumna) =====
+  async function initAlumnaData(dni) {
+    const profesSnap = await window._get(window._ref(window._db, 'profes'));
+    profesData = profesSnap.val() || {};
+
+    window._onValue(window._ref(window._db, 'horarios'), (snap) => {
+      horariosData = snap.val() || {};
+      renderMisClases(dni);
+    });
+  }
+
+  function renderMisClases(dni) {
+    const container = document.getElementById('mis-clases-container');
+    if (!container) return;
+
+    const clases = [];
+    DIAS.forEach(dia => {
+      HORAS.forEach(hora => {
+        const slot = horariosData[dia] && horariosData[dia][hora];
+        if (slot && slot.alumnas) {
+          const match = Object.values(slot.alumnas).find(a => String(a.dni) === String(dni));
+          if (match) {
+            const profeNombre = (profesData[slot.profeId] && profesData[slot.profeId].nombre) || 'Sin asignar';
+            clases.push({ dia, hora, profeNombre });
+          }
+        }
+      });
+    });
+
+    if (clases.length === 0) {
+      container.innerHTML = `<div class="empty-state">Todavía no tenés clases asignadas. Consultá con tu profe 🙂</div>`;
+      return;
+    }
+
+    container.innerHTML = clases.map(c => `
+      <div class="mis-clases-card">
+        <div class="mis-clases-dia">${DIAS_LABEL[c.dia]}</div>
+        <div class="mis-clases-hora">${c.hora} hs</div>
+        <div class="mis-clases-profe">Prof. ${c.profeNombre}</div>
+      </div>
+    `).join('');
   }
 
   document.addEventListener('DOMContentLoaded', () => {
