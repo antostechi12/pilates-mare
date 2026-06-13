@@ -5,68 +5,182 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pilates Mare</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
 
     :root {
-      --bg: #f7f4f0;
+      --rosa: #f4a7b9;
+      --rosa-dark: #e8849d;
+      --rosa-bg: #fdf0f4;
+      --celeste: #a8d8ea;
+      --celeste-dark: #7ec8e3;
+      --text: #3a2a2e;
+      --text-soft: #9a7a84;
+      --border: #f0d8e0;
       --surface: #ffffff;
-      --primary: #c8a98a;
-      --primary-dark: #a8845f;
-      --accent: #3d5a52;
-      --text: #2a2a2a;
-      --text-soft: #7a7a7a;
-      --border: #e8e2da;
       --danger: #c0392b;
       --success: #2e7d5a;
-      --radius: 12px;
+      --radius: 14px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
+      background: var(--rosa-bg);
       color: var(--text);
       min-height: 100vh;
     }
 
-    /* ===== LOGIN ===== */
-    #login-screen {
+    /* ===== PANTALLA BIENVENIDA ===== */
+    #welcome-screen {
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      background: linear-gradient(160deg, #fdf0f4 0%, #fce4ec 50%, #f8d7e8 100%);
+      text-align: center;
+    }
+
+    .welcome-logo h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      color: var(--rosa-dark);
+      letter-spacing: 2px;
+      line-height: 1.1;
+    }
+
+    .welcome-logo .tagline {
+      font-size: 13px;
+      color: var(--text-soft);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 10px;
+    }
+
+    .disciplines {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 28px 0;
+    }
+
+    .discipline-pill {
+      background: white;
+      border: 1.5px solid var(--rosa);
+      color: var(--rosa-dark);
+      padding: 7px 18px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .address {
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+    }
+
+    .welcome-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .btn-alumna {
+      padding: 16px;
+      background: var(--celeste);
+      color: #1a4a5a;
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-alumna:hover { background: var(--celeste-dark); }
+    .btn-alumna:active { transform: scale(0.98); }
+
+    .btn-nueva {
+      padding: 16px;
+      background: var(--rosa);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-nueva:hover { background: var(--rosa-dark); }
+    .btn-nueva:active { transform: scale(0.98); }
+
+    .btn-staff {
+      background: none;
+      border: none;
+      color: var(--text-soft);
+      font-size: 12px;
+      cursor: pointer;
+      margin-top: 8px;
+      text-decoration: underline;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* ===== LOGIN ALUMNA ===== */
+    #login-alumna-screen, #login-staff-screen {
+      min-height: 100vh;
+      display: none;
       align-items: center;
       justify-content: center;
       padding: 24px;
-      background: linear-gradient(135deg, #f7f4f0 0%, #ede8e0 100%);
+      background: linear-gradient(160deg, #fdf0f4 0%, #fce4ec 100%);
     }
 
     .login-card {
       background: var(--surface);
       border-radius: 20px;
-      padding: 48px 40px;
+      padding: 40px 36px;
       width: 100%;
-      max-width: 400px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      max-width: 380px;
+      box-shadow: 0 8px 40px rgba(244,167,185,0.2);
     }
 
-    .login-logo {
-      text-align: center;
-      margin-bottom: 36px;
-    }
-
-    .login-logo h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      color: var(--accent);
-      letter-spacing: 1px;
-    }
-
-    .login-logo p {
-      font-size: 13px;
+    .login-back {
+      background: none;
+      border: none;
       color: var(--text-soft);
-      margin-top: 4px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      font-size: 13px;
+      cursor: pointer;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .login-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--rosa-dark);
+      margin-bottom: 6px;
+    }
+
+    .login-card p {
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 28px;
     }
 
     .form-group {
@@ -79,31 +193,47 @@
       font-weight: 500;
       color: var(--text-soft);
       margin-bottom: 6px;
-      letter-spacing: 0.5px;
     }
 
     .form-group input {
       width: 100%;
-      padding: 12px 16px;
+      padding: 13px 16px;
       border: 1.5px solid var(--border);
       border-radius: var(--radius);
       font-family: 'DM Sans', sans-serif;
       font-size: 15px;
       color: var(--text);
-      background: var(--bg);
+      background: var(--rosa-bg);
       transition: border-color 0.2s;
       outline: none;
     }
 
     .form-group input:focus {
-      border-color: var(--primary);
+      border-color: var(--rosa);
       background: white;
     }
 
-    .btn-primary {
+    .btn-ingresar {
       width: 100%;
       padding: 14px;
-      background: var(--accent);
+      background: var(--celeste);
+      color: #1a4a5a;
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-ingresar:hover { background: var(--celeste-dark); }
+    .btn-ingresar:active { transform: scale(0.98); }
+
+    .btn-ingresar-staff {
+      width: 100%;
+      padding: 14px;
+      background: var(--rosa);
       color: white;
       border: none;
       border-radius: var(--radius);
@@ -112,11 +242,9 @@
       font-weight: 600;
       cursor: pointer;
       transition: background 0.2s, transform 0.1s;
-      letter-spacing: 0.5px;
     }
 
-    .btn-primary:hover { background: #2d4a43; }
-    .btn-primary:active { transform: scale(0.98); }
+    .btn-ingresar-staff:hover { background: var(--rosa-dark); }
 
     .error-msg {
       color: var(--danger);
@@ -126,65 +254,67 @@
       min-height: 18px;
     }
 
-    /* ===== APP PRINCIPAL ===== */
-    #app-screen { display: none; min-height: 100vh; }
+    /* ===== APP ALUMNA ===== */
+    #app-alumna-screen { display: none; min-height: 100vh; }
+
+    /* ===== APP STAFF ===== */
+    #app-staff-screen { display: none; min-height: 100vh; }
 
     /* Header */
     .app-header {
-      background: var(--accent);
+      background: var(--rosa);
       color: white;
-      padding: 0 24px;
-      height: 60px;
+      padding: 0 20px;
+      height: 58px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 2px 12px rgba(244,167,185,0.3);
     }
 
     .app-header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 20px;
+      font-size: 19px;
       letter-spacing: 1px;
     }
 
     .header-right {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
     }
 
     .user-badge {
       font-size: 13px;
-      opacity: 0.85;
+      opacity: 0.9;
     }
 
     .btn-logout {
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
       color: white;
-      padding: 6px 14px;
+      padding: 6px 12px;
       border-radius: 8px;
       font-size: 13px;
       cursor: pointer;
-      transition: background 0.2s;
+      font-family: 'DM Sans', sans-serif;
     }
-
-    .btn-logout:hover { background: rgba(255,255,255,0.25); }
 
     /* Nav tabs */
     .app-nav {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
-      padding: 0 24px;
+      padding: 0 20px;
       display: flex;
-      gap: 4px;
+      gap: 2px;
       overflow-x: auto;
     }
 
     .nav-tab {
-      padding: 14px 18px;
+      padding: 13px 16px;
       font-size: 14px;
       font-weight: 500;
       color: var(--text-soft);
@@ -199,12 +329,12 @@
       font-family: 'DM Sans', sans-serif;
     }
 
-    .nav-tab:hover { color: var(--accent); }
-    .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .nav-tab:hover { color: var(--rosa-dark); }
+    .nav-tab.active { color: var(--rosa-dark); border-bottom-color: var(--rosa); }
 
     /* Contenido */
     .app-content {
-      padding: 32px 24px;
+      padding: 28px 20px;
       max-width: 1100px;
       margin: 0 auto;
     }
@@ -214,9 +344,9 @@
 
     .panel-title {
       font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      color: var(--accent);
-      margin-bottom: 24px;
+      font-size: 22px;
+      color: var(--rosa-dark);
+      margin-bottom: 20px;
     }
 
     .coming-soon {
@@ -227,103 +357,178 @@
       border: 1.5px dashed var(--border);
     }
 
-    .coming-soon p {
-      color: var(--text-soft);
-      font-size: 15px;
-    }
+    .coming-soon p { color: var(--text-soft); font-size: 15px; }
 
-    /* Cards resumen */
+    /* Stats */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-bottom: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
     }
 
     .stat-card {
       background: var(--surface);
       border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      padding: 22px;
+      box-shadow: 0 2px 12px rgba(244,167,185,0.1);
+      border: 1px solid var(--border);
     }
 
     .stat-card .number {
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 600;
-      color: var(--accent);
+      color: var(--rosa-dark);
       font-family: 'Playfair Display', serif;
     }
 
     .stat-card .label {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-soft);
       margin-top: 4px;
     }
 
-    /* Loading */
-    .loading {
-      text-align: center;
-      padding: 48px;
-      color: var(--text-soft);
-    }
-
-    /* Responsive móvil */
     @media (max-width: 600px) {
-      .login-card { padding: 36px 24px; }
+      .welcome-logo h1 { font-size: 34px; }
+      .login-card { padding: 32px 24px; }
       .app-content { padding: 20px 16px; }
-      .app-header h1 { font-size: 17px; }
       .user-badge { display: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- PANTALLA LOGIN -->
-<div id="login-screen">
-  <div class="login-card">
-    <div class="login-logo">
-      <h1>Pilates Mare</h1>
-      <p>San Martín 925</p>
-    </div>
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" id="login-email" placeholder="tu@email.com" />
-    </div>
-    <div class="form-group">
-      <label>Contraseña</label>
-      <input type="password" id="login-pass" placeholder="••••••••" />
-    </div>
-    <button class="btn-primary" onclick="handleLogin()">Ingresar</button>
-    <div class="error-msg" id="login-error"></div>
+<!-- PANTALLA BIENVENIDA -->
+<div id="welcome-screen">
+  <div class="welcome-logo">
+    <h1>Pilates Mare</h1>
+    <div class="tagline">Estudio de Pilates</div>
+  </div>
+
+  <div class="disciplines">
+    <span class="discipline-pill">Reformer</span>
+    <span class="discipline-pill">Sproing Board</span>
+    <span class="discipline-pill">Mat</span>
+  </div>
+
+  <div class="address">📍 Mendoza 925</div>
+
+  <div class="welcome-buttons">
+    <button class="btn-alumna" onclick="showScreen('login-alumna-screen')">Soy alumna</button>
+    <button class="btn-nueva" onclick="showScreen('login-nueva-screen')">Quiero empezar Pilates</button>
+    <button class="btn-staff" onclick="showScreen('login-staff-screen')">Acceso staff</button>
   </div>
 </div>
 
-<!-- APP PRINCIPAL -->
-<div id="app-screen">
+<!-- LOGIN ALUMNA -->
+<div id="login-alumna-screen" style="display:none; min-height:100vh; align-items:center; justify-content:center; padding:24px; background:linear-gradient(160deg,#fdf0f4,#fce4ec);">
+  <div class="login-card">
+    <button class="login-back" onclick="showScreen('welcome-screen')">← Volver</button>
+    <h2>Hola!</h2>
+    <p>Ingresá tu DNI para ver tu información</p>
+    <div class="form-group">
+      <label>DNI (sin puntos)</label>
+      <input type="number" id="alumna-dni" placeholder="12345678" />
+    </div>
+    <button class="btn-ingresar" onclick="handleLoginAlumna()">Ingresar</button>
+    <div class="error-msg" id="alumna-error"></div>
+  </div>
+</div>
+
+<!-- REGISTRO NUEVA ALUMNA -->
+<div id="login-nueva-screen" style="display:none; min-height:100vh; align-items:center; justify-content:center; padding:24px; background:linear-gradient(160deg,#fdf0f4,#fce4ec);">
+  <div class="login-card">
+    <button class="login-back" onclick="showScreen('welcome-screen')">← Volver</button>
+    <h2>¡Bienvenida!</h2>
+    <p>Completá tus datos y nos contactamos</p>
+    <div class="form-group">
+      <label>Nombre y apellido</label>
+      <input type="text" id="nueva-nombre" placeholder="María García" />
+    </div>
+    <div class="form-group">
+      <label>Teléfono / WhatsApp</label>
+      <input type="tel" id="nueva-tel" placeholder="3794000000" />
+    </div>
+    <div class="form-group">
+      <label>DNI</label>
+      <input type="number" id="nueva-dni" placeholder="12345678" />
+    </div>
+    <button class="btn-nueva" onclick="handleRegistroNueva()">Enviar</button>
+    <div class="error-msg" id="nueva-error"></div>
+  </div>
+</div>
+
+<!-- LOGIN STAFF -->
+<div id="login-staff-screen" style="display:none; min-height:100vh; align-items:center; justify-content:center; padding:24px; background:linear-gradient(160deg,#fdf0f4,#fce4ec);">
+  <div class="login-card">
+    <button class="login-back" onclick="showScreen('welcome-screen')">← Volver</button>
+    <h2>Acceso Staff</h2>
+    <p>Ingresá con tu email y contraseña</p>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" id="staff-email" placeholder="profe@pilatesmare.com" />
+    </div>
+    <div class="form-group">
+      <label>Contraseña</label>
+      <input type="password" id="staff-pass" placeholder="••••••••" />
+    </div>
+    <button class="btn-ingresar-staff" onclick="handleLoginStaff()">Ingresar</button>
+    <div class="error-msg" id="staff-error"></div>
+  </div>
+</div>
+
+<!-- APP ALUMNA -->
+<div id="app-alumna-screen">
   <header class="app-header">
     <h1>Pilates Mare</h1>
     <div class="header-right">
-      <span class="user-badge" id="user-name"></span>
+      <span class="user-badge" id="alumna-name-header"></span>
       <button class="btn-logout" onclick="handleLogout()">Salir</button>
     </div>
   </header>
-
   <nav class="app-nav">
-    <button class="nav-tab active" onclick="showTab('inicio')">Inicio</button>
-    <button class="nav-tab" onclick="showTab('alumnas')">Alumnas</button>
-    <button class="nav-tab" onclick="showTab('pagos')">Pagos</button>
-    <button class="nav-tab" onclick="showTab('horarios')">Horarios</button>
-    <button class="nav-tab" onclick="showTab('ausencias')">Ausencias</button>
-    <button class="nav-tab" onclick="showTab('profes')">Profes</button>
-    <button class="nav-tab" onclick="showTab('whatsapp')">WhatsApp</button>
+    <button class="nav-tab active" onclick="showTabAlumna('mi-info', event)">Mi info</button>
+    <button class="nav-tab" onclick="showTabAlumna('mis-clases', event)">Mis clases</button>
+    <button class="nav-tab" onclick="showTabAlumna('mis-pagos', event)">Mis pagos</button>
   </nav>
-
   <main class="app-content">
+    <div id="alumna-tab-mi-info" class="tab-panel active">
+      <h2 class="panel-title">Mi información</h2>
+      <div class="coming-soon"><p>Módulo en construcción 🔧</p></div>
+    </div>
+    <div id="alumna-tab-mis-clases" class="tab-panel">
+      <h2 class="panel-title">Mis clases</h2>
+      <div class="coming-soon"><p>Módulo en construcción 🔧</p></div>
+    </div>
+    <div id="alumna-tab-mis-pagos" class="tab-panel">
+      <h2 class="panel-title">Mis pagos</h2>
+      <div class="coming-soon"><p>Módulo en construcción 🔧</p></div>
+    </div>
+  </main>
+</div>
 
-    <!-- INICIO -->
-    <div id="tab-inicio" class="tab-panel active">
+<!-- APP STAFF -->
+<div id="app-staff-screen">
+  <header class="app-header">
+    <h1>Pilates Mare</h1>
+    <div class="header-right">
+      <span class="user-badge" id="staff-name-header"></span>
+      <button class="btn-logout" onclick="handleLogout()">Salir</button>
+    </div>
+  </header>
+  <nav class="app-nav">
+    <button class="nav-tab active" onclick="showTabStaff('inicio', event)">Inicio</button>
+    <button class="nav-tab" onclick="showTabStaff('alumnas', event)">Alumnas</button>
+    <button class="nav-tab" onclick="showTabStaff('pagos', event)">Pagos</button>
+    <button class="nav-tab" onclick="showTabStaff('horarios', event)">Horarios</button>
+    <button class="nav-tab" onclick="showTabStaff('ausencias', event)">Ausencias</button>
+    <button class="nav-tab" onclick="showTabStaff('profes', event)">Profes</button>
+    <button class="nav-tab" onclick="showTabStaff('whatsapp', event)">WhatsApp</button>
+  </nav>
+  <main class="app-content">
+    <div id="staff-tab-inicio" class="tab-panel active">
       <h2 class="panel-title">Bienvenida 👋</h2>
-      <div class="stats-grid" id="stats-grid">
+      <div class="stats-grid">
         <div class="stat-card">
           <div class="number" id="stat-alumnas">—</div>
           <div class="label">Alumnas activas</div>
@@ -342,43 +547,30 @@
         </div>
       </div>
     </div>
-
-    <!-- ALUMNAS -->
-    <div id="tab-alumnas" class="tab-panel">
+    <div id="staff-tab-alumnas" class="tab-panel">
       <h2 class="panel-title">Alumnas</h2>
       <div class="coming-soon"><p>Módulo en construcción 🔧</p></div>
     </div>
-
-    <!-- PAGOS -->
-    <div id="tab-pagos" class="tab-panel">
+    <div id="staff-tab-pagos" class="tab-panel">
       <h2 class="panel-title">Pagos</h2>
       <div class="coming-soon"><p>Módulo en construcción 🔧</p></div>
     </div>
-
-    <!-- HORARIOS -->
-    <div id="tab-horarios" class="tab-panel">
+    <div id="staff-tab-horarios" class="tab-panel">
       <h2 class="panel-title">Horarios</h2>
       <div class="coming-soon"><p>Módulo en construcción 🔧</p></div>
     </div>
-
-    <!-- AUSENCIAS -->
-    <div id="tab-ausencias" class="tab-panel">
+    <div id="staff-tab-ausencias" class="tab-panel">
       <h2 class="panel-title">Ausencias y Recuperos</h2>
       <div class="coming-soon"><p>Módulo en construcción 🔧</p></div>
     </div>
-
-    <!-- PROFES -->
-    <div id="tab-profes" class="tab-panel">
+    <div id="staff-tab-profes" class="tab-panel">
       <h2 class="panel-title">Profesoras</h2>
       <div class="coming-soon"><p>Módulo en construcción 🔧</p></div>
     </div>
-
-    <!-- WHATSAPP -->
-    <div id="tab-whatsapp" class="tab-panel">
+    <div id="staff-tab-whatsapp" class="tab-panel">
       <h2 class="panel-title">Notificaciones WhatsApp</h2>
       <div class="coming-soon"><p>Módulo en construcción 🔧</p></div>
     </div>
-
   </main>
 </div>
 
@@ -387,7 +579,7 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getDatabase, ref, get }
+  import { getDatabase, ref, get, set, push }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
   const firebaseConfig = {
@@ -404,61 +596,129 @@
   const auth = getAuth(app);
   const db = getDatabase(app);
 
-  // Exponer al scope global
   window._auth = auth;
   window._db = db;
   window._ref = ref;
   window._get = get;
+  window._set = set;
+  window._push = push;
   window._signInWithEmailAndPassword = signInWithEmailAndPassword;
   window._signOut = signOut;
 
-  // Observer de sesión
+  // Si hay sesión activa de staff, ir directo al panel
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('app-screen').style.display = 'block';
-      document.getElementById('user-name').textContent = user.email;
-    } else {
-      document.getElementById('login-screen').style.display = 'flex';
-      document.getElementById('app-screen').style.display = 'none';
+      hideAll();
+      document.getElementById('app-staff-screen').style.display = 'block';
+      document.getElementById('staff-name-header').textContent = user.email;
     }
   });
 </script>
 
 <script>
-  async function handleLogin() {
-    const email = document.getElementById('login-email').value.trim();
-    const pass = document.getElementById('login-pass').value;
-    const errorEl = document.getElementById('login-error');
-    errorEl.textContent = '';
+  function hideAll() {
+    ['welcome-screen','login-alumna-screen','login-nueva-screen','login-staff-screen',
+     'app-alumna-screen','app-staff-screen'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+  }
 
-    if (!email || !pass) {
-      errorEl.textContent = 'Completá email y contraseña.';
-      return;
+  function showScreen(id) {
+    hideAll();
+    const el = document.getElementById(id);
+    if (el) {
+      el.style.display = ['app-alumna-screen','app-staff-screen'].includes(id) ? 'block' : 'flex';
     }
+  }
+
+  async function handleLoginAlumna() {
+    const dni = document.getElementById('alumna-dni').value.trim();
+    const errorEl = document.getElementById('alumna-error');
+    errorEl.textContent = '';
+    if (!dni) { errorEl.textContent = 'Ingresá tu DNI.'; return; }
 
     try {
+      const snapshot = await window._get(window._ref(window._db, 'alumnas'));
+      if (snapshot.exists()) {
+        const alumnas = snapshot.val();
+        const alumna = Object.values(alumnas).find(a => String(a.dni) === String(dni));
+        if (alumna) {
+          hideAll();
+          document.getElementById('app-alumna-screen').style.display = 'block';
+          document.getElementById('alumna-name-header').textContent = alumna.nombre;
+          return;
+        }
+      }
+      errorEl.textContent = 'DNI no encontrado. Verificá el número.';
+    } catch(e) {
+      errorEl.textContent = 'Error al conectar. Intentá de nuevo.';
+    }
+  }
+
+  async function handleRegistroNueva() {
+    const nombre = document.getElementById('nueva-nombre').value.trim();
+    const tel = document.getElementById('nueva-tel').value.trim();
+    const dni = document.getElementById('nueva-dni').value.trim();
+    const errorEl = document.getElementById('nueva-error');
+    errorEl.textContent = '';
+
+    if (!nombre || !tel || !dni) { errorEl.textContent = 'Completá todos los campos.'; return; }
+
+    try {
+      await window._push(window._ref(window._db, 'consultas'), {
+        nombre, tel, dni,
+        fecha: new Date().toISOString(),
+        estado: 'pendiente'
+      });
+      errorEl.style.color = 'var(--success)';
+      errorEl.textContent = '¡Listo! Te contactamos pronto 🎉';
+      document.getElementById('nueva-nombre').value = '';
+      document.getElementById('nueva-tel').value = '';
+      document.getElementById('nueva-dni').value = '';
+    } catch(e) {
+      errorEl.textContent = 'Error al enviar. Intentá de nuevo.';
+    }
+  }
+
+  async function handleLoginStaff() {
+    const email = document.getElementById('staff-email').value.trim();
+    const pass = document.getElementById('staff-pass').value;
+    const errorEl = document.getElementById('staff-error');
+    errorEl.textContent = '';
+    if (!email || !pass) { errorEl.textContent = 'Completá email y contraseña.'; return; }
+    try {
       await window._signInWithEmailAndPassword(window._auth, email, pass);
-    } catch (e) {
+    } catch(e) {
       errorEl.textContent = 'Email o contraseña incorrectos.';
     }
   }
 
   async function handleLogout() {
-    await window._signOut(window._auth);
+    try { await window._signOut(window._auth); } catch(e) {}
+    showScreen('welcome-screen');
   }
 
-  function showTab(name) {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('tab-' + name).classList.add('active');
-    event.target.classList.add('active');
+  function showTabStaff(name, event) {
+    document.querySelectorAll('#app-staff-screen .tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('#app-staff-screen .nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('staff-tab-' + name).classList.add('active');
+    if (event && event.target) event.target.classList.add('active');
   }
 
-  // Enter en login
+  function showTabAlumna(name, event) {
+    document.querySelectorAll('#app-alumna-screen .tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('#app-alumna-screen .nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('alumna-tab-' + name).classList.add('active');
+    if (event && event.target) event.target.classList.add('active');
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('login-pass').addEventListener('keydown', e => {
-      if (e.key === 'Enter') handleLogin();
+    document.getElementById('alumna-dni').addEventListener('keydown', e => {
+      if (e.key === 'Enter') handleLoginAlumna();
+    });
+    document.getElementById('staff-pass').addEventListener('keydown', e => {
+      if (e.key === 'Enter') handleLoginStaff();
     });
   });
 </script>
